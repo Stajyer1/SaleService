@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concrete;
+using Entity.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,17 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+        [HttpGet("getCount")]
+        public IActionResult GetCount()
+        {
+            var result = _service.GetAll();
+            CountDTO count = new() { Count = result.Data.Count, Message = "keyifli kodlamalar", Success = result.Success };
+            if (count.Count!=0)
+            {
+                return Ok(count);
+            }
+            return BadRequest(count);
         }
         [HttpPost("add")]
         public IActionResult Add(User user)

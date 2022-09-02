@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,8 +37,8 @@ namespace Sale.WebApi.Controllers
             var result = _service.GetAll();
             if (result.Success)
             {
-
-                return Ok(result.Data.Count);
+                CountDTO count = new() { Count = result.Data.Count,Success=result.Success };
+                return Ok(count);
             }
             return BadRequest(result.Message);
         }
@@ -59,7 +60,7 @@ namespace Sale.WebApi.Controllers
             {
                 return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
         [HttpPost("delete")]
@@ -71,6 +72,16 @@ namespace Sale.WebApi.Controllers
                 return Ok(result);
             }
             return BadRequest(result.Message);
+        }
+        [HttpGet("getById")]
+        public IActionResult GetById(int id)
+        {
+            var result = _service.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

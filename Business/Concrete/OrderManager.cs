@@ -11,6 +11,12 @@ namespace Business.Concrete
     public class OrderManager : IOrderService
     {
         IOrderDal _dal;
+
+        public OrderManager(IOrderDal dal)
+        {
+            _dal = dal;
+        }
+
         public IResult Add(OrderDetail entity)
         {
             _dal.Add(entity);

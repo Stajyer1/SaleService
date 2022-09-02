@@ -53,7 +53,7 @@ namespace Business.Concrete
             {
                 var products = context.Products.Where(p => p.Id == result.ProductId).ToList();
                 var order= context.OrderDetails.FirstOrDefault(o => o.OrderNumber == result.OrderNumber);
-                var detail = new OrderDetailDto() { Total = order.Total, OrderNumber = result.OrderNumber,  Products = products };
+                var detail = new OrderDetailDto() {OrderId=order.Id, Total = order.Total, OrderNumber = result.OrderNumber,  Products = products };
                 return new SuccessDataResult<OrderDetailDto>(detail);
             }
             

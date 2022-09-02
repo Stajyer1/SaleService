@@ -26,12 +26,18 @@ namespace DataAccess.Concrete.EntityFramework
                             
                              select   new OrderDetailListDto()
                             {
+                                 OrderId=order.Id,
                                 Total = order.Total,                               
-                                ProductPrice = product.Price,
+                                
                                 ProductCategory = product.Category,
                                 ProductSKU = product.SKU,
                                 ProductName = product.Name,
-                                ProductDesc = product.Desc
+                                ProductDesc = product.Desc,
+                                CreatedBy=order.CreatedBy,
+                                DeletedBy=order.DeletedBy,
+                                Deleted=order.Deleted,
+                                PaymentId=order.PaymentId,
+                                
                             });
                 return query.ToList();
 

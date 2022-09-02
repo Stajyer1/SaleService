@@ -11,6 +11,7 @@ namespace Entity.DTOs
     public class CountDTO:IDto
     {
         public int Count { get; set; }
-        public bool Success { get; set; } 
+        public bool Success { get; set; }
+        public string Message { get; set; }
     }
 }

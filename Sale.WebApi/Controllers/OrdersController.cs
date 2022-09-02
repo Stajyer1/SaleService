@@ -28,7 +28,7 @@ namespace Sale.WebApi.Controllers
            var result = _service.GetAlls(orderNumber);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -38,7 +38,7 @@ namespace Sale.WebApi.Controllers
             var result = _service.GetAlls(null);
             if (result.Success)
             {
-                var count=new CountDTO() {Success=true, Count = result.Data.Count };
+                var count=new CountDTO() {Success=true, Count = result.Data.Count, Message="kolay gelsin karşiim" };
                 return Ok(count);
             }
             return BadRequest(result.Message);
